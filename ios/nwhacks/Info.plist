@@ -5,7 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
+	
 	<string>nwhacks</string>
+
+
+<key>NSPhotoLibraryUsageDescription</key> <string>Images from Library</string> <key>NSCameraUsageDescription</key> <string>Images from Camera</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

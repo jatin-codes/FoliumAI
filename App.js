@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import WelcomePage from './src/WelcomePage';
+// import WelcomePage from './src/WelcomePage';
+import CameraComponent from './src/CameraComponent';
 
 export default class App extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <WelcomePage/>
+        {/* <WelcomePage/> */}
+        <CameraComponent/>
       </View>
     );
   }

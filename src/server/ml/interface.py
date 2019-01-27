@@ -23,69 +23,7 @@ import logging
 from ast import literal_eval
 import settings
 
-def train_tags(labelled_data_path, unlabelled_data_path, random_state = 42, epochs = 10):
-
-    PATH_TO_DATA = labelled_data_path
-
-    tags_to_remove = ['use/modification of sap content']
-
-    tags_to_merge = {
-        'termination/suspension': 'changes to service',
-        'consent': 'general requirements',
-        'publicity': 'data security standards',
-        'informed consent': 'privacy/data protection',
-        'technical requirements': 'general requirements'
-    }
-
-    loader = LabeledData(os.path.realpath(os.path.join(os.getcwd(), PATH_TO_DATA)))
-
-    loader.extract_excel()
-
-    loader.add_infrequent(threshold=10)
-
-    loader.add_manual(tags_to_remove=tags_to_remove)
-
-    loader.remove_tags()
-
-    loader.manual_remove()
-
-    loader.merge_tags(mapper=tags_to_merge)
-
-    raw_unlab = pd.read_excel(unlabelled_data_path)
-
-    len_thres = 20
-
-    col = 'content'  # use old paragraphs. also works on new_paragraphs column
-
-    data_unlab = raw_unlab[raw_unlab[col].astype(str).map(lambda x: x.split()).str.len() > len_thres].copy()
-    data_unlab.reset_index(drop=True, inplace=True)
-
-    data_unlabeled = data_unlab.copy()  # only tag 200 for demo purpose
-
-    data_unlabeled['text'] = data_unlabeled[col]  # old paragraphs
-    data_unlabeled['tags'] = data_unlabeled.apply(lambda x: [], axis=1)
-
-    print('Predicting tags ...')
-    data_labeled = loader.data
-    tags = loader.tags_to_keep
-    tags_file = open("tags_old.txt", "w", encoding='utf-8')
-    for tag in tags:
-        tags_file.write(tag+'\n\n')
-    #print(data_labeled.shape)
-    #print(data_unlabeled.shape)
-    #exit(0)
-    tagging_unlab = TaggingSSL(data_labeled, tags, random_state,  data_unlabeled)
-    tagging_unlab.set_stopwords()  # add customized stopwords here if needed
-
-    tagging_unlab.set_hyperparams(min_count=1)  # using defaults
-
-    tagging_unlab.run(epochs)
-
-
-
-
-
-def predict_tags(input_text):
+def predict_plant_names(input_text):
     name = 'tagging_model'
 
     #model = Doc2Vec.load(os.path.join(os.getcwd(),'server', 'ml', 'ALRA', 'models', 'doc2vec_models','tagging_model'))

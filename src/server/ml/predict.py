@@ -1,4 +1,5 @@
 # import the necessary packages
+from random import randint
 from keras.preprocessing.image import img_to_array
 from keras.models import load_model
 import numpy as np
@@ -30,6 +31,7 @@ for file in os.listdir(args["dataset"]) :
 	dir_labels=dir_labels[:-1]
 	num_class=num_class+1
 
+len = len(dir_labels)
 print("[INFO] Labels are ",dir_labels)
 
 # load the image

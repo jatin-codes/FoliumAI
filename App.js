@@ -1,15 +1,27 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-// import WelcomePage from './src/WelcomePage';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import WelcomePage from './src/WelcomePage';
 import CameraComponent from './src/CameraComponent';
 
-export default class App extends Component{
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tab: 2
+    };
+  }
+
   render() {
+    const { tab } = this.state;
     return (
-      <View style={styles.container}>
-        {/* <WelcomePage/> */}
-        <CameraComponent/>
-      </View>
+      <TouchableOpacity style={styles.container}>
+        {tab == 1 &&
+          <WelcomePage onPress={() => this.setState({ tab: 2 })} />
+        }
+        {tab == 2 &&
+          <CameraComponent />
+        }
+      </TouchableOpacity>
     );
   }
 }

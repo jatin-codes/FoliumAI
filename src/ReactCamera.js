@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
@@ -18,7 +19,7 @@ const options = {
 
 export default class ReactCamera extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       avatarSource: null,
@@ -38,7 +39,7 @@ export default class ReactCamera extends React.Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         let source = { uri: response.uri };
-            console.log(source);
+        console.log(source);
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
@@ -47,14 +48,16 @@ export default class ReactCamera extends React.Component {
         });
       }
     });
-}
+  }
 
   render() {
     return (
-      <View >
-        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-            <Text>Select Image</Text>
-            <Image source={this.state.avatarSource} style={{height:200, margin:10}}></Image>
+      <View style={styles.container}>
+        <View style={styles.homeContainer}>
+          <Image resizeMode="contain" style={styles.logo} source={require('./images/logo.png')} />
+        </View>
+          <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+            <Text style={styles.button}>Get Started</Text>
           </TouchableOpacity>
       </View>
     );
@@ -66,7 +69,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#a4db82',
+  },
+  homeContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: '#5FA717'
+  },
+  logo: {
+    marginTop: 100,
+    position: 'absolute',
+    width: 250,
+    height: 250
+  },
+  button: {
+    backgroundColor: 'green',
+    borderColor: '#a4db82',
+    borderWidth: 200,
+    borderRadius: 5,
+    width: 600,
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+    overflow: 'hidden',
+    padding: 10,
+    textAlign:'center',
   },
   avatarContainer: {
     borderColor: '#9B9B9B',

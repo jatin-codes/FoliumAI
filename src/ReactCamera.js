@@ -41,6 +41,9 @@ export default class ReactCamera extends React.Component {
         imageData.append('leaf_image',response.data);
         console.log(imageData);
 
+        // create an endpoint here.. 
+        // if the process is successful pass the image to processing
+
         let source = { uri: response.uri };
             console.log(source);
         // You can also display the image using data:

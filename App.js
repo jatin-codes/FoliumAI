@@ -2,17 +2,31 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 // import WelcomePage from './src/WelcomePage';
 import CameraComponent from './src/CameraComponent';
+import AppNavigator from './src/AppNavigator';
 
-export default class App extends Component{
+class App extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      leaf_image: [],
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        {/* <WelcomePage/> */}
-        <CameraComponent/>
-      </View>
+        <AppNavigator
+          screenProps={
+            {
+              leaf_image: this.state.leaf_image,
+            }
+          }
+        />
     );
   }
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {

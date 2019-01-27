@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 import React from 'react';
 import {
   Image,
@@ -23,10 +23,28 @@ export default class ReactCamera extends React.Component {
     super(props);
     this.state = {
       avatarSource: null,
+      response: null,
+      isLoading: false,
     }
   }
 
+  // componentDidUpdate(prevResponse){
+  //   if (this.state.prevResponse !== this.state.response) {
+  //     // let imagesUri=[];
+  //     // for (var i = 0; i < this.state.images.length; i++) {
+  //     //   let source = { uri: ‘data:image/jpeg;base64,’ + this.state.images[i].data };
+  //     //   imagesUri.push(source);
+  //     // }
+  //     // this.props.navigation.navigate(‘Upload’,{Image: this.state.imageSource, Images: imagesUri})
+  //     console.log("COmponent did update")
+  //     this.props.navigation.navigate('Processing', {
+  //       img: this.state.avatarSource,
+  //     });
+  //   }
+  // }
+
   selectPhotoTapped() {
+    console.log('test')
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
@@ -52,22 +70,47 @@ export default class ReactCamera extends React.Component {
 
         this.setState({
           avatarSource: source,
+          response: source,
+          isLoading: true
         });
+
+        // need to process this in order to start move to another page
+        // this.handleNextPage.bind(this);
       }
     });
   }
+  handleNextPage(){
+    // e.preventDefault();
+    console.log('triggeres');
+   // this.props.navigation.navigate('Processing'); 
+  }
 
   render() {
+    const {isLoading} = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.homeContainer}>
-          <Image resizeMode="contain" style={styles.logo} source={require('./images/logo.png')} />
+        {
+            !isLoading &&
+            <View >
+              <View style={styles.homeContainer}>
+                <Image resizeMode="contain" style={styles.logo} source={require('./images/logo.png')} />
+              </View>
+              <TouchableOpacity style={styles.homeContainer}
+                onPress={this.selectPhotoTapped.bind(this)}>
+                <Image resizeMode="contain" style={styles.logo} source={require('./images/start.png')} />
+              </TouchableOpacity>
+            </View>
+        }
+
+        {
+          isLoading &&
+          
+          <View style={styles.container}>
+            <Image style={{height: 300, marginBottom:10, width: 300}} source = {this.state.avatarSource}/>
+            <Text>Processing file</Text>
+          </View>
+        }
         </View>
-          <TouchableOpacity style={styles.homeContainer}
-            onPress={this.selectPhotoTapped.bind(this)}>
-            <Image resizeMode="contain" style={styles.logo} source={require('./images/start.png')} />
-          </TouchableOpacity>
-      </View>
     );
   }
 }

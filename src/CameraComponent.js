@@ -6,9 +6,9 @@ class CameraComponent extends Component {
     render (){
         return (
             <View style={styles.container}>
-                <ReactCamera/>
+                <ReactCamera />
             </View>
-        )
+        );
     }
 }
 

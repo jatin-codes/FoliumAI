@@ -1,9 +1,11 @@
 import {createStackNavigator,
     createAppContainer} from 'react-navigation';
-import CameraComponent from './CameraComponent';
+import ReactCamera from './ReactCamera';
+import Results from './Results';
 
 const routeNavigator = createStackNavigator({
-  CameraComponent: { screen: CameraComponent },
+  ReactCamera: { screen: ReactCamera },
+  Results: { screen: Results },
 });
 
 const AppNavigator = createAppContainer(routeNavigator)

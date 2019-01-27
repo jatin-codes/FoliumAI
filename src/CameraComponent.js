@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 import ReactCamera from './ReactCamera';
+import {StyleSheet, View} from 'react-native'
 
 class CameraComponent extends Component {
     render (){
         return (
-            <View>
-                <View>
-                    <ReactCamera/>
-                </View>
+            <View style={styles.container}>
+                <ReactCamera/>
             </View>
         )
     }
@@ -16,22 +14,12 @@ class CameraComponent extends Component {
 
 export default CameraComponent;
 
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#42f4a1',
-    },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
+      backgroundColor: '#F5FCFF',
     },
   });
+  

@@ -37,6 +37,10 @@ export default class ReactCamera extends React.Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
+        const imageData = new FormData();
+        imageData.append('leaf_image',response.data);
+        console.log(imageData);
+
         let source = { uri: response.uri };
             console.log(source);
         // You can also display the image using data:

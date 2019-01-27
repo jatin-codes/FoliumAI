@@ -54,7 +54,7 @@ export default class ReactCamera extends React.Component {
       <View >
         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
             <Text>Select Image</Text>
-            <Image source={this.state.avatarSource} style={{height:200, margin:10}}></Image>
+            <Image source={this.state.avatarSource} style={{width: "100%", height:200}}></Image>
           </TouchableOpacity>
       </View>
     );

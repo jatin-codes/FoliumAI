@@ -3,6 +3,7 @@ import {
     Image,
     PixelRatio,
     StyleSheet,
+    Button,
     Text,
     TouchableOpacity,
     View,
@@ -28,6 +29,14 @@ class DetailResult extends Component {
                     borderBottomColor: 'black',
                     borderBottomWidth: 1,
                 }}
+            />
+
+            <Button
+                title="Back to home"
+                onPress={() =>
+                    this.props.navigation.navigate('Results')
+                    // need to send the whole data back
+                }
             />
             <View onPress={this.handlePress.bind(this)}>
                 <Text>Test Dummy data</Text>

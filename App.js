@@ -1,34 +1,39 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-// import WelcomePage from './src/WelcomePage';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import AppNavigator from './src/AppNavigator';
 import CameraComponent from './src/CameraComponent';
 
-export default class App extends Component{
-  render() {
+class App extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      leaf_image: [],
+    }
+  }
+
+  render(){
     return (
-      <View style={styles.container}>
-        {/* <WelcomePage/> */}
-        <CameraComponent/>
-      </View>
-    );
+      // <View>
+        // <AppNavigator
+        //   screenProps={
+        //     {
+        //       leaf_image: this.state.leaf_image,
+        //     }
+        //   }
+        // />
+          // <CameraComponent/>
+         <AppNavigator
+          screenProps={
+            {
+              leaf_image: this.state.leaf_image,
+            }
+          }
+          />
+        
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default App;
+

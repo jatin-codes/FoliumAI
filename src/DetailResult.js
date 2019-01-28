@@ -32,7 +32,7 @@ class DetailResult extends Component {
             />
 
             <Button
-                title="Back to home"
+                title="Back to result"
                 onPress={() =>
                     this.props.navigation.navigate('Results')
                     // need to send the whole data back

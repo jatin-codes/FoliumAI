@@ -60,6 +60,28 @@ export default class ReactCamera extends React.Component {
         imageData.append('leaf_image',response.data);
         console.log(imageData);
 
+
+        // Set Prediction-Key Header to : b045217654b04a34989a440b4ceb8b0b</image>
+// Set Content-Type Header to : application/octet-stream
+// Set Body to : <image file>
+
+        axios({
+          // url: 'https://westus2.api.cognitive.microsoft.com/customvision/v2.0/Prediction/42e1e328-0208-4214-ba53-71cb87320f4d/image?iterationId=ab1b2cc0-b5c7-442b-b8d4-778aa949b9b9',
+          url: 'http://127.0.0.1:5000/api/ml',
+          method: 'post',
+          data: imageData,
+          headers: {
+            "Prediction-Key" : "b045217654b04a34989a440b4ceb8b0b",
+            "Content-Type" : "application/octet-stream",
+            },
+          body : imageData,
+        }).then(function (response){
+          console.log(response);
+        }).catch((error) => {
+          console.warn(error,'Promise error');
+          // done();
+        });
+
         // create an endpoint here.. 
         // if the process is successful pass the image to processing
 
